@@ -13,9 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+
+
 from django.conf.urls import url
 from django.contrib import admin
+from app.views import IndexPageView, RegionsPageView, CategoryPageView, SubcategoryPageView, ListingPageView, ProfilePageView, PostNewListingView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', IndexPageView.as_view(), name="index_page_view"),
+    url(r'^regions/$', RegionsPageView.as_view(), name="regions_page_view"),
+    url(r'^(?P<category>\w+)/$', CategoryPageView.as_view(), name="category_page_view"),
+    url(r'^category/(?P<sub>\w+)/$', SubcategoryPageView.as_view(), name="subcategory_page_view"),
+    url(r'^listing/(?P<listing>\w+)/$', ListingPageView.as_view(), name="listing_page_view"),
+    url(r'^accounts/profile/$', ProfilePageView.as_view(), name="profile_page_view"),
+    url(r'^post_new_listing/$', PostNewListingView.as_view(), name="post_new_listing_view")
 ]
