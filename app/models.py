@@ -19,3 +19,14 @@ class Category(models.Model):
 class SubCategory(models.Model):
     category = models.ForeignKey(Category)
     subcategory = models.CharField(max_length=20)
+
+
+class Profile(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=30)
+    street_address = models.CharField(max_length=30)
+    street_address_2 = models.CharField(max_length=30, null=True)
+    city = models.CharField(max_length=35)
+    state = models.CharField(max_length=15)
+    zip_code = models.IntegerField()
+    photo = models.ImageField()
