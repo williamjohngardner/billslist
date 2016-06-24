@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for object in object_list  %}
+      <a href="{% url 'subcategory_page_view' object.pk %}">{{object.title}}</a><br>
+    {% endfor %}
+{% endblock %}

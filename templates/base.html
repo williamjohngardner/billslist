@@ -9,9 +9,16 @@
   </head>
   <body>
     <div class="container">
-      {% block content %}
-        There is no content here.
-      {% endblock %}
+      <nav>
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="{% url 'index_page_view' %}">Home</a></li>
+          <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
+          <li role="presentation"><a href="{% url 'logout' %}?next=/">Logout</a></li>
+        </ul>
+      </nav>
+        {% block content %}
+          There is no content here.
+        {% endblock %}
     </div>
   </body>
 </html>

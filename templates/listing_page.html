@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><a href=""></a></h3>
+    </div>
+    <div class="panel-body">
+      {% for object in object_list  %}
+        <a href="{% url 'subcategory_page_view' object.pk %}">{{object.pk}}</a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
