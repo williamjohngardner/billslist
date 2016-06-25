@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">{{object.title}}</h3>
@@ -9,6 +10,7 @@
   {{ object.title }}
   {{ object.price }}
   {{ object.location }}
+  <img src="{{ object.photos.url }}" alt="" />
   </div>
 </div>
 {% endblock %}

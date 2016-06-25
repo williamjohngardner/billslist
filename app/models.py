@@ -11,7 +11,13 @@ class Profile(models.Model):
     state = models.CharField(max_length=15)
     zip_code = models.IntegerField()
     email = models.EmailField()
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to="profile_photos", null=True, blank=True, verbose_name="Profile Photo")
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return self.photo.url
+        return "http://www.sessionlogs.com/media/icons/defaultIcon.png"
 
     def __str__(self):
         return self.first_name
@@ -37,11 +43,17 @@ class Listing(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     location = models.CharField(max_length=60)
     subcategory = models.ForeignKey(SubCategory)
-    photos = models.ImageField()
+    photos = models.ImageField(upload_to="listing_photos", null=True, blank=True, verbose_name="Listing Photo")
     created = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
-    post_id = models.IntegerField()
+    post_id = models.AutoField(primary_key=True)
     profile = models.ForeignKey(Profile)
+
+    @property
+    def photo_url(self):
+        if self.photo:
+            return self.photo.url
+        return "http://www.sessionlogs.com/media/icons/defaultIcon.png"
 
     def __str__(self):
         return self.title
