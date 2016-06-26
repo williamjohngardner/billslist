@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Category, Listing, SubCategory, Profile
+from app.models import Category, Listing, SubCategory, Profile, Region
 
 
 admin.site.register(Category)
@@ -21,3 +21,5 @@ class ListingAdmin(admin.ModelAdmin):
     list_display = ('title', 'price', 'location', 'subcategory', 'created')
 
 admin.site.register(Listing, ListingAdmin)
+
+admin.site.register(Region)

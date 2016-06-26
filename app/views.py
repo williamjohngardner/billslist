@@ -26,6 +26,14 @@ class RegionsPageView(ListView):
     model = Region
 
 
+class CityListPageView(ListView):
+    model = Listing
+
+    def get_queryset(self, **kwargs):
+        city = self.kwargs.get('pk', None)
+        return Listing.objects.filter(location=city)
+
+
 class CategoryPageView(TemplateView):
     pass
 
@@ -44,11 +52,14 @@ class ListingPageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['listing_list'] = Listing.objects.all()
+        context['sorted_newest'] = Listing.objects.all().order_by('-created')
+        context['sorted_price'] = Listing.objects.all().order_by('-price')
         return context
 
 
 class ListingDetailView(DetailView):
     model = Listing
+
 
 
 class ProfilePageView(UpdateView):
