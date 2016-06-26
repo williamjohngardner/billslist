@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{object.title}}</h3>
-  </div>
-  <div class="panel-body">
-  {{ object.title }}
-  {{ object.price }}
-  {{ object.location }}
-  <img src="{{ object.photos.url }}" alt="" />
-  </div>
+<div class="page-header">
+  <h1>Bill's List<small>  A Place. For Things. And Stuff</small></h1>
 </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><a href="{% url 'listing_detail_view' object.pk %}">{{object.title}}</a></h3><h3>${{object.price}} |  {{object.location}}  |  user: {{object.profile}}</h3>
+        <img src="{{object.photos.url}}" alt="" />
+      </div>
+          <div class="panel-body">
+            {{object.description}}
+          </div>
+    </div>
 {% endblock %}

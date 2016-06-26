@@ -4,17 +4,21 @@
   <div class="page-header">
     <h1>Bill's List <small>A Place. For Things. And Stuff</small></h1>
   </div>
-    {% for category in category_list %}
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{{category}}</h3>
+  <div class="container">
+    <div class="row">
+      {% for category in category_list %}
+        <div class="col-lg-5">
+          <ul class="list-unstyled">
+              <li><h3>{{category}}</h3></li>
+                {% for sub in category.subcategory_set.all  %}
+                <ul>
+                  <li><h5><a href="{% url 'subcategory_page_view' sub.pk %}">{{sub}}</a></h5></li>
+                </ul>
+                {% endfor %}
+          </ul>
         </div>
-          {% for sub in category.subcategory_set.all  %}
-            <div class="panel-body">
-              <a href="{% url 'subcategory_page_view' sub.pk %}">{{sub}}</a>
-               <br>
-            </div>
-          {% endfor %}
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
   {% endblock %}

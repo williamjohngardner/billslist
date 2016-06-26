@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
-from app.models import SubCategory, Category, Listing, Profile
+from app.models import SubCategory, Category, Listing, Profile, Region
 from django.contrib.auth.forms import UserCreationForm
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.models import User
 
 
 class IndexPageView(TemplateView):
@@ -20,8 +22,8 @@ class CreateUserView(CreateView):
     success_url = "/login"
 
 
-class RegionsPageView(TemplateView):
-    pass
+class RegionsPageView(ListView):
+    model = Region
 
 
 class CategoryPageView(TemplateView):
@@ -51,8 +53,9 @@ class ListingDetailView(DetailView):
 
 class ProfilePageView(UpdateView):
     # template_name = "accounts/profile.html"
-    fields = ["first_name", "last_name", "street_address", "street_address_2", "city", "state", "zip_code", "email", "photo"]
+    fields = ["first_name", "last_name", "location_pref", "zip_code", "photo"]
     model = Profile
+    success_url = reverse_lazy("index_page_view")
 
     def get_object(self, queryset=None):
         return self.request.user

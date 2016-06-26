@@ -3,9 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Bill's List</title>
     <link rel="stylesheet" href="{% static "app/css/bootstrap.css" %}" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="{% static "app/css/master.css" %}" media="screen" charset="utf-8">
   </head>
   <body>
     <div class="container">
@@ -15,10 +14,11 @@
           <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
           <li role="presentation"><a href="{% url 'create_user' %}">Create User</a></li>
 
-          {% if user.request.is_authenticated %}
-          <li role="presentation"><a href="{% url 'logout' %}?next=/">Logout</a></li>
-          <li role="presentation"><a href="{% url 'post_new_listing_view' %}">Create New Listing</a></li>
-          <li class="navbar-text"><strong>User is logged in as: {{ request.user }}</strong></li>
+
+          {% if request.user.is_authenticated %}
+            <li role="presentation"><a href="{% url 'logout' %}?next=/">Logout</a></li>
+            <li role="presentation"><a href="{% url 'post_new_listing_view' %}">Create New Listing</a></li>
+            <li class="navbar-text"><strong>User is logged in as: {{ request.user }}</strong></li>
           {% endif %}
         </ul>
       </nav>

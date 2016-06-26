@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="page-header">
-  <h1>{{Listing.subcategory}}<small>A Place. For Things. And Stuff</small></h1>
+  <h1>Bill's List<small>  A Place. For Things. And Stuff</small></h1>
 </div>
     {% for object in object_list  %}
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><a href="{% url 'listing_detail_view' object.pk %}">{{object.title}}</a><h3>${{object.price}}</h3></h3>
+        <h3 class="panel-title"><a href="{% url 'listing_detail_view' object.pk %}">{{object.title}}</a></h3><h3>${{object.price}} |  {{object.location}}</h3>
         <img src="{{object.photos.url}}" alt="" />
       </div>
           <div class="panel-body">

@@ -1,4 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
+class Region(models.Model):
+    location = models.CharField(max_length=50)
 
 
 class Profile(models.Model):
@@ -11,6 +16,7 @@ class Profile(models.Model):
     state = models.CharField(max_length=15)
     zip_code = models.IntegerField()
     email = models.EmailField()
+    location_pref = models.ForeignKey(Region)
     photo = models.ImageField(upload_to="profile_photos", null=True, blank=True, verbose_name="Profile Photo")
 
     @property
@@ -41,7 +47,8 @@ class SubCategory(models.Model):
 class Listing(models.Model):
     title = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    location = models.CharField(max_length=60)
+    location = models.ForeignKey(Region)
+    category = models.ForeignKey(Category)
     subcategory = models.ForeignKey(SubCategory)
     photos = models.ImageField(upload_to="listing_photos", null=True, blank=True, verbose_name="Listing Photo")
     created = models.DateTimeField(auto_now_add=True)
