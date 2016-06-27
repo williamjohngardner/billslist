@@ -23,7 +23,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout
 
 from app.views import IndexPageView, RegionsPageView, CategoryPageView, SubcategoryPageView, ListingDetailView, ProfilePageView, PostNewListingView, ListingPageView, CreateUserView, CityListPageView
-
+from app.views import ListingSortedCreated
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', SubcategoryPageView.as_view(), name="subcategory_page_view"),
     url(r'^listing/$', ListingPageView.as_view(), name="listing_page_view"),
     url(r'^listing/(?P<pk>\d+)/$', ListingDetailView.as_view(), name="listing_detail_view"),
+    url(r'^listing/(?P<pksub>\d+)/created/$', ListingSortedCreated.as_view(), name="listing_sorted_created"),
     url(r'^post_new_listing/$', login_required(PostNewListingView.as_view()), name="post_new_listing_view"),
     url(r'^(?P<category>\w+)/$', CategoryPageView.as_view(), name="category_page_view"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

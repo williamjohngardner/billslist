@@ -57,6 +57,15 @@ class ListingPageView(ListView):
         return context
 
 
+class ListingSortedCreated(ListView):
+    model = Listing
+    template_name = "listing_list.html"
+
+    def get_queryset(self, **kwargs):
+        pksub = self.kwargs.get('pksub', None)
+        return Listing.objects.filter(pk=pksub)
+
+
 class ListingDetailView(DetailView):
     model = Listing
 
