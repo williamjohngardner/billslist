@@ -24,6 +24,7 @@ from django.contrib.auth.views import logout
 
 from app.views import IndexPageView, RegionsPageView, CategoryPageView, SubcategoryPageView, ListingDetailView, ProfilePageView, PostNewListingView, ListingPageView, CreateUserView, CityListPageView
 from app.views import ListingSortedCreated
+from restful.views import CategoryListAPIView, CategoryDetailAPIView, SubCategoryListAPIView, SubCategoryDetailAPIView, ListingListAPIView, ListingDetailAPIView, RegionListAPIView, RegionDetailAPIView, ProfileListAPIView, ProfileDetailAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -39,4 +40,15 @@ urlpatterns = [
     url(r'^listing/(?P<pksub>\d+)/created/$', ListingSortedCreated.as_view(), name="listing_sorted_created"),
     url(r'^post_new_listing/$', login_required(PostNewListingView.as_view()), name="post_new_listing_view"),
     url(r'^(?P<category>\w+)/$', CategoryPageView.as_view(), name="category_page_view"),
+
+    url(r'^api/category/$', CategoryListAPIView.as_view(), name="category_list_api_view"),
+    url(r'^api/category/(?P<pk>\d+)/$', CategoryDetailAPIView.as_view(), name="category_detail_api_view"),
+    url(r'^api/sub_category/$', SubCategoryListAPIView.as_view(), name="sub_category_list_api_view"),
+    url(r'^api/sub_category/(?P<pk>\d+)/$', SubCategoryDetailAPIView.as_view(), name="sub_category_detail_api_view"),
+    url(r'^api/listing/$', ListingListAPIView.as_view(), name="listing_list_api_view"),
+    url(r'^api/listing/(?P<pk>\d+)/$', ListingDetailAPIView.as_view(), name="listing_detail_api_view"),
+    url(r'^api/region/$', RegionListAPIView.as_view(), name="region_list_api_view"),
+    url(r'^api/region/(?P<pk>\d+)/$', RegionDetailAPIView.as_view(), name="region_detail_api_view"),
+    url(r'^api/profile/$', ProfileListAPIView.as_view(), name="profile_list_api_view"),
+    url(r'^api/profile/(?P<pk>\d+)/$', ProfileDetailAPIView.as_view(), name="profile_detail_api_view")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
