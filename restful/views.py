@@ -13,6 +13,20 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+class CategoryListingListAPIView(generics.ListCreateAPIView):
+    serializer_class = ListingSerializer
+
+    def get_queryset(self):
+        list = self.kwargs.get('pk', None)
+        return Listing.objects.filter(category=list)
+
+class SubCategoryListingListAPIView(generics.ListCreateAPIView):
+    serializer_class = ListingSerializer
+
+    def get_queryset(self):
+        list = self.kwargs.get('pk', None)
+        return Listing.objects.filter(subcategory=list)
+
 class SubCategoryListAPIView(generics.ListCreateAPIView):
     queryset = SubCategory.objects.all()
     serializer_class = SubCategorySerializer
