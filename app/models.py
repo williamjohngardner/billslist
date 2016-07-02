@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+
 
 
 class Region(models.Model):
@@ -67,3 +71,11 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.title
+
+
+@receiver(post_save, sender="auth.User") #every post save will call def User
+def create_token(**kwargs):
+    created = kwargs.get("created")
+    instance = kwargs.get("instance")
+    if created:
+        Token.objects.create(user=instance)
