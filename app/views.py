@@ -72,7 +72,6 @@ class ListingDetailView(DetailView):
 
 
 class ProfilePageView(UpdateView):
-    # template_name = "accounts/profile.html"
     fields = ["first_name", "last_name", "location_pref", "zip_code", "photo"]
     model = Profile
     success_url = reverse_lazy("index_page_view")
@@ -83,4 +82,5 @@ class ProfilePageView(UpdateView):
 
 class PostNewListingView(CreateView):
     model = Listing
-    fields = ["title", "price", "location", "subcategory", "photos", "description", "post_id", "profile"]
+    fields = ["title", "price", "location", "category", "subcategory", "photos", "description", "post_id", "profile"]
+    success_url = reverse_lazy("index_page_view")
