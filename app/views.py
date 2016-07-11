@@ -49,12 +49,20 @@ class SubcategoryPageView(ListView):
 class ListingPageView(ListView):
     model = Listing
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['listing_list'] = Listing.objects.all()
-        context['sorted_newest'] = Listing.objects.all().order_by('-created')
-        context['sorted_price'] = Listing.objects.all().order_by('-price')
+        #context['sorted_newest'] = Listing.objects.all().order_by('-created')
+        #context['sorted_price'] = Listing.objects.all().order_by('-price')
         return context
+
+    def get_queryset(self, **kwargs):
+        sort = self.request.GET.get('sort')
+        if sort:
+            return Listing.objects.all().order_by(sort)
+        else:
+            return Listing.objects.all()
 
 
 class ListingSortedCreated(ListView):

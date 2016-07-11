@@ -3,6 +3,9 @@ from rest_framework import generics
 from app.models import Category, SubCategory, Listing, Region, Profile
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from restful.serializers import CategorySerializer, SubCategorySerializer, ListingSerializer, RegionSerializer, ProfileSerializer
+from restful.permissions import IsOwnerOrReadOnly
+from rest_framework.response import Response
+
 
 
 class CategoryListAPIView(generics.ListAPIView):
@@ -43,6 +46,7 @@ class ListingListAPIView(generics.ListCreateAPIView):
 class ListingDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Listing.objects.all()
     serializer_class = ListingSerializer
+    permission_classes = (IsOwnerOrReadOnly)
 
 class RegionListAPIView(generics.ListAPIView):
     queryset = Region.objects.all()

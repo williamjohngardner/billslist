@@ -5,6 +5,11 @@
     <div class="panel-heading">
       <h3 class="panel-title"><a href=""></a></h3>
     </div>
+    <div class="btn-group" role="group">
+      <a type="button" class="btn btn-default" href="{% url 'listing_page_view' %}?sort=-created">Sort Date</a>
+      <a type="button" class="btn btn-default" href="{% url 'listing_page_view' %}?sort=price">Sort Price: Low/High</a>
+      <a type="button" class="btn btn-default" href="{% url 'listing_page_view' %}?sort=-price">Sort Price: High/Low</a>
+    </div>
     <div class="panel-body">
       {% for object in object_list  %}
         <a href="{% url 'subcategory_page_view' object.pk %}">{{object.pk}}</a>
