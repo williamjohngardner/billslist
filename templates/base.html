@@ -8,26 +8,69 @@
   </head>
   <body>
     <div class="container">
-      <nav>
-        <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="{% url 'index_page_view' %}">Home</a></li>
-          <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
-          <li role="presentation"><a href="{% url 'create_user' %}">Create User</a></li>
-          <li role="presentation"><a href="{% url 'listing_page_view' %}">View All Listings</a></li>
-          <li role="presentation"><a href="{% url 'regions_page_view' %}">Sort by Region</a></li>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bill's List</a>
+        </div>
 
+    <!-- Nav Bar Left -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        {% if not request.user.is_authenticated %}
+        <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
+        <li role="presentation"><a href="{% url 'create_user' %}">Create User</a></li>
+        {% endif %}
+      </ul>
 
-
-          {% if request.user.is_authenticated %}
-            <li role="presentation"><a href="{% url 'logout' %}?next=/">Logout</a></li>
+        <!-- Nav Bar Right -->
+      <ul class="nav navbar-nav navbar-right">
+        {% if request.user.is_authenticated %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
             <li role="presentation"><a href="{% url 'post_new_listing_view' %}">Create New Listing</a></li>
-            <li class="navbar-text"><strong>User is logged in as: {{ request.user }}</strong></li>
-          {% endif %}
-        </ul>
-      </nav>
+            <li role="presentation"><a href="{% url 'logout' %}?next=/">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+        <!-- Search Bar -->
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="page-header">
+  <h1>Bill's List <small>A Place. For Things. And Stuff</small></h1>
+</div>
+<nav>
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="{% url 'index_page_view' %}">Home</a></li>
+    <li role="presentation" class="active"><a href="{% url 'listing_page_view' %}">View All Listings</a></li>
+    <li role="presentation" class="active"><a href="{% url 'regions_page_view' %}">Sort by Region</a></li>
+  </ul>
+</nav>
         {% block content %}
           There is no content here.
         {% endblock %}
     </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'app/js/bootstrap.js' %}"></script>
+
+    {% block extrascript %}
+
+    {% endblock %}
   </body>
 </html>
