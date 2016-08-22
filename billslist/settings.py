@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'restful',
     'rest_framework.authtoken',
-    'whitenoise'
+    'whitenoise',
+    'bootstrapform'
 ]
 
 MIDDLEWARE_CLASSES = [

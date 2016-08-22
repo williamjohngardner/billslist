@@ -1,1 +1,17 @@
+.navbar-default {
+    background-color: #fff;
+    border-bottom: 2px, #333;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+}
 
+
+.jumbotron{
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+
+hr{
+  border-top: 2px solid #eee;
+}

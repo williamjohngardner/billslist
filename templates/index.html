@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="container">
+<nav>
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="{% url 'index_page_view' %}">Home</a></li>
+    <li role="presentation" class="active"><a href="{% url 'listing_page_view' %}">View All Listings</a></li>
+    <li role="presentation" class="active"><a href="{% url 'regions_page_view' %}">Sort by Region</a></li>
+  </ul>
+</nav>
     <div class="row">
       {% for category in category_list %}
-        <div class="col-lg-3 well">
+        <div class="col-lg-3">
           <ul class="list-unstyled">
               <li><h3>{{category}}</h3></li>
               <hr>
@@ -17,7 +23,6 @@
         </div>
       {% endfor %}
     </div>
-  </div>
 {% endblock %}
 {% block extrascript %}
   <script>$('.collapse').collapse()</script>
