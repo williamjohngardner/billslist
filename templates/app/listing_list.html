@@ -1,28 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="btn-group" role="group">
-  <a type="button" class="btn btn-default" href="{% url 'listing_page_view' %}?sort=-created">Sort Date</a>
-  <a type="button" class="btn btn-default" href="{% url 'listing_page_view' %}?sort=price">Sort Price: Low/High</a>
-  <a type="button" class="btn btn-default" href="{% url 'listing_page_view' %}?sort=-price">Sort Price: High/Low</a>
+<br>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Sort Options
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="{% url 'listing_page_view' %}?sort=-created">Sort Date</a></li>
+    <li><a href="{% url 'listing_page_view' %}?sort=price">Sort Price: Low/High</a></li>
+    <li><a href="{% url 'listing_page_view' %}?sort=-price">Sort Price: High/Low</a></li>
+  </ul>
 </div>
 <br>
 <br>
-<div class="container">
   <div class="row">
   {% for object in object_list  %}
     <div class="col-lg-6">
-        <div class="panel panel-default">
+        <div id="panel" class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><a href="{% url 'listing_detail_view' object.pk %}">{{object.title}}</a></h3><h3>${{object.price}} |  {{object.location}}</h3>
-            <img src="{{object.photos.url}}" class="thumbnail img-responsive" />
+            <h3 class="panel-title"><a href="{% url 'listing_detail_view' object.pk %}">{{object.title}}</a></h3>
+            <hr>
+            <h4>${{object.price}}</h4>
+            <h4>{{object.location}}</h4>
+            <img id="listimage" src="{{object.photos.url}}" class="thumbnail img-responsive"/>
           </div>
-              <div class="panel-body">
-                {{object.description}}
-              </div>
+
         </div>
     </div>
   {% endfor %}
   </div>
-</div>
 {% endblock %}

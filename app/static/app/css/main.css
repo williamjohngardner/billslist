@@ -6,12 +6,15 @@
     border-top: 0px;
 }
 
-
-.jumbotron{
-  padding-top: 15px;
-  padding-bottom: 20px;
+hr{
+  border-top: .5px solid #ccc;
 }
 
-hr{
-  border-top: 2px solid #eee;
+#listimage {
+  max-height: 385px;
+  min-height: 385px;
+}
+
+#panel {
+  box-shadow: 0 10px 15px gray;
 }

@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for object in object_list  %}
-  <ul>
-    <li><h5><a href="{% url 'city_list_page_view' object.pk %}">{{object.location}}</a></h5></li>
-  </ul>
-  {% endfor %}
+<br>
+<div class="container">
+  <div class="btn-group btn-group-justified" role="group">
+    {% for object in object_list  %}
+        <a class="btn btn-default" href="{% url 'city_list_page_view' object.pk %}">{{object.location}}</a>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
